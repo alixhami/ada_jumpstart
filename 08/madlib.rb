@@ -24,7 +24,7 @@ print "Verb: "
 verb_2 = gets.chomp
 
 
-puts "Romeo And Juliet: Prologue"
+puts "\nRomeo And Juliet: Prologue"
 puts "By William Shakespeare\n\n"
 puts "Two #{plural_noun_1}, both alike in dignity,
 In fair #{place}, where we lay our scene,
