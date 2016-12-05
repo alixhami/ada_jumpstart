@@ -2,10 +2,10 @@ puts "Welcome to the fake candy machine!"
 puts "Do not eat this fake candy. It is virtual."
 
 print "\nHow much money do you have? > $"
-money = gets.chomp.to_f
-
-if money == 0
-  abort("\nThat ain't no number! No candy for you!")
+money = 0
+until money > 0
+  money = gets.chomp.to_f
+  print "Please input a valid positive integer. > $" if money <= 0
 end
 
 puts "\n$#{money}, that's all?"
@@ -16,30 +16,26 @@ puts "C $0.75 Heath"
 puts "D $0.65 Reese's Peanut Butter Cup"
 puts "E $0.55 Starbursts"
 
+inventory_cost = {
+  A: 0.65,
+  B: 0.5,
+  C: 0.75,
+  D: 0.65,
+  E: 0.55
+}
 print "\nSo, What'll ya have? > "
 
-candy_choice = gets.chomp
-
-cost = 0
-case candy_choice.upcase
-when "A"
-  cost = 0.65
-when "B"
-  cost = 0.5
-when "C"
-  cost = 0.75
-when "D"
-  cost = 0.65
-when "E"
-  cost = 0.55
+cost = nil
+until cost
+  candy_choice = gets.chomp.upcase
+  cost = inventory_cost[candy_choice.to_sym]
+  print "Error: Please enter a valid choice. > " if cost == nil
 end
 
-if cost > money
+change = money - cost
+if change < 0
   puts "You're broke. Take your $#{money} and go elsewhere."
-elsif cost == 0
-  puts "Sorry, I didn't understand your selection. You get no candy."
 else
-  change = money - cost
   puts "\nThank you for purchasing candy through us."
   puts "Please take your candy, and your #{change} change!"
 end
