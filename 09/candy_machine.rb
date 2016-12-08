@@ -8,7 +8,7 @@ until money > 0
   print "Please input a valid positive integer. > $" if money <= 0
 end
 
-puts "\n$#{money}, that's all?"
+puts "\n$%.2f, that's all?" % money
 puts "Well, lemme tell you what we got here."
 puts "\nA $0.65 Tropical Skittles"
 puts "B $0.50 Tim's Sea Salt & Vinegar Chips"
@@ -34,8 +34,8 @@ end
 
 change = money - cost
 if change < 0
-  puts "You're broke. Take your $#{money} and go elsewhere."
+  puts "You're broke. Take your $%.2f and go elsewhere." % money
 else
   puts "\nThank you for purchasing candy through us."
-  puts "Please take your candy, and your #{change} change!"
+  puts "Please take your candy, and your $%.2f change!" % change
 end
