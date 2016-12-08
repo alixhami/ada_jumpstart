@@ -1,10 +1,17 @@
 puts "Welcome to my election voting program."
 
 puts "\nElection candidates are: Donald Duck, Minnie Mouse, & Goofy"
+print "How many people will be voting in this election? > "
+
+number_of_voters = 0
+until number_of_voters > 0
+  number_of_voters = gets.chomp.to_i
+  print "Error: Please enter a valid, positive number > " if number_of_voters < 1
+end
 
 candidate_votes = Hash.new(0)
 
-(1..10).each do |i|
+(1..number_of_voters).each do |i|
   print "Vote #{i}: "
   vote = gets.chomp
   candidate_votes[vote] += 1
