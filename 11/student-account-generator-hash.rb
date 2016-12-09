@@ -1,22 +1,23 @@
 student_data = []
+student_names = File.readlines('names.txt').map {|name| name.chomp }
+potential_student_IDs = (111111..999999).to_a.shuffle
 
-5.times do |i|
-  puts "Please enter a Student Name (First and Last): "
-  name_input = gets.chomp
-  names = name_input.upcase.split(" ")
+student_names.each_with_index do |student_name, i|
 
-  student_data[i] = {
-      name: name_input,
-      ID: rand(111111..999999)
-  }
+  student_data[i] = {name: student_name, ID: potential_student_IDs.pop}
+  names = student_name.split(" ")
+  first_initials = names.length == 2 ? names[0][0] : names[0][0] + names[1][0]
+  username = (first_initials + names[-1]).downcase + student_data[i][:ID].to_s[3..5]
+  student_data[i][:email] = username + "@adadevelopersacademy.org"
 
-  if names.length > 2 # uses first two initials if the student has more than 2 names
-	   student_data[i][:email] = names[0][0] + names[1][0] + names[-1] + student_data[i][:ID].to_s[-3..-1] + "@adadevelopersacademy.org"
-  else
-	   student_data[i][:email] = names[0][0] + names[-1] + student_data[i][:ID].to_s[-3..-1] + "@adadevelopersacademy.org"
-  end
+end
+
+longest_name = ""
+student_data.each do |student|
+  longest_name = student[:name] if student[:name].length > longest_name.length
 end
 
 student_data.each do |student|
-  puts "Name: #{student[:name]}  Student ID: #{student[:ID]}  Email: #{student[:email]}"
+  spaced_name = student[:name].ljust(longest_name.length," ")
+  puts "Name: #{spaced_name}  Student ID: #{student[:ID]}  Email: #{student[:email]}"
 end

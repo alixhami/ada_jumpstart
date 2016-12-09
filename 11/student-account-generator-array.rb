@@ -1,4 +1,3 @@
-student_names = []
 student_IDs = []
 student_emails = []
 
