@@ -16,5 +16,6 @@ longest_name = student_names.max_by(&:length)
 end
 
 (student_names.length).times do |i|
-  puts "Name: #{student_names[i].ljust(longest_name.length," ")}  Student ID: #{student_IDs[i]}  Email: #{student_emails[i]}"
+  spaced_name = student_names[i].ljust(longest_name.length," ")
+  puts "Name: #{spaced_name}  Student ID: #{student_IDs[i]}  Email: #{student_emails[i]}"
 end
